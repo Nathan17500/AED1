@@ -10,14 +10,14 @@ void aplicarCura(int *pvida, int cura) {
 
 void testetesouro(int *ptesouro){
     if (*ptesouro == 0){
-        printf("TESOURO: INATIVO\n\n");
+        printf("TESOURO: INATIVO\n%p\n\n", (void*) ptesouro);
     }else{
-        printf("TESOURO: ATIVO\n\n");
+        printf("TESOURO: ATIVO\n%p\n\n", (void*) ptesouro);
     }
 }
 
 void verificaVidaAtual(int *pvida){
-    printf("VIDA: %d\n", *pvida);
+    printf("VIDA: %d\n%p\n", *pvida, (void*) pvida);
 }
 
 int main() {
@@ -27,7 +27,6 @@ int main() {
     printf("Estado Inicial\n");
     verificaVidaAtual(pvida);
     testetesouro(ptesouro);
-    printf("%p\n%p\n", (void*)pvida, (void*)ptesouro);
     printf("Enquanto se aventurava em busca de tesouro, você cai em um buraco. Você recebe 30 de dano.\n");
     aplicarDano(pvida, 30);
     verificaVidaAtual(pvida);
