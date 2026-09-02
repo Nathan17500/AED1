@@ -2,12 +2,11 @@
 #include <locale.h>
 
 void etapa_padrão(int *mapa, int *petapa){
-    printf("Você descansa um pouco antes de prosseguir para a próxima etapa. Você sobe %d metros.", mapa[*petapa]);
-    mostrar_etapa(petapa);
+    printf("Você descansa um pouco antes de prosseguir para a próxima etapa. Você sobe %d metros.\n", mapa[*petapa]);
 }
 
 void mostrar_etapa(int *petapa){
-    printf("Etapa: %d", *petapa);
+    printf("ETAPA: %d\n\n", *petapa+1);
     *petapa = *petapa + 1;
 }
 
@@ -19,7 +18,7 @@ void ler_mapa(int *mapa, int tamanho) {
 
 void mostrar_mapa(const int *mapa, int tamanho){
     for (int i=0;i<tamanho;i++){
-        printf("Etapa %d: %d metros.", i+1, *(mapa+i));
+        printf("Etapa %d: %d metros.\n", i+1, *(mapa+i));
     }
 }
 
@@ -75,41 +74,52 @@ int main() {
         printf("Informe também quanto você deseja subir entre cada etapa.");
         ler_mapa (mapa, tamanho);
         mostrar_mapa (mapa, tamanho);
+        printf("\n");
 
-        if (etapaAtual == 0) {
-            printf("Enquanto subia a trilha, um deslizamento de pedras te atinge, causando 30 de dano. Mesmo assim, você não desiste e continua sua jornada, subindo mais %d metros.\n", mapa[*petapa]);
-            aplicar_dano(pvida, 30);
-            verificaVidaAtual(pvida);
-        } else {
-            etapa_padrão(mapa, petapa);
-        }
+        printf("Enquanto subia a trilha, um deslizamento de pedras te atinge, causando 30 de dano. Mesmo assim, você não desiste e continua sua jornada, subindo mais %d metros.\n", mapa[*petapa]);
+        aplicar_dano(pvida, 30);
+        verificaVidaAtual(pvida);
+        etapaAtual= etapaAtual+1;
+        printf("ETAPA: %d\n\n", *petapa);
 
-        if (etapaAtual == tamanho - 3) {
-            printf("Na metade do caminho, você é emboscado por outros que também buscam o tesouro. Você os derrota, recebendo 20 de dano e 100 pontos, continuando a subir 15 metros.\n");
-            aplicar_dano(pvida, 20);
-            *ppontuação = *ppontuação + 100;
-            verificaVidaAtual(pvida);
-            testePontuação(ppontuação);
-        } else {
-            etapa_padrão(mapa, petapa);
-        }
+        do {
+            if (etapaAtual == tamanho - 3|| etapaAtual == 2) {
+                printf("Na metade do caminho, você é emboscado por outros que também buscam o tesouro. Você os derrota, recebendo 20 de dano e 100 pontos, continuando a subir %d metros.\n", mapa[*petapa]);
+                aplicar_dano(pvida, 20);
+                *ppontuação = *ppontuação + 100;
+                verificaVidaAtual(pvida);
+                testePontuação(ppontuação);
+                mostrar_etapa(petapa);
+            } else {
+                etapa_padrão(mapa, petapa);
+                mostrar_etapa(petapa);
+            }
+        } while (etapaAtual <= tamanho - 3);
 
-        if (etapaAtual == tamanho - 2) {
-            printf("Pensando em desistir devido aos ferimentos, você, por sorte, encontra um local para se recuperar. Você recupera 30 de vida e sobe mais 20 metros.\n");
-            restaurar_vida(pvida, 30);
-            verificaVidaAtual(pvida);
-        }  else {
-            etapa_padrão(mapa, petapa);
-        }
-        // adicionar for para repetir as etapas até chegar no marco.
-        if (etapaAtual == tamanho) {
-            printf("Após descansar, você adentra uma caverna no topo da montranha, encontrando o tesouro que tanto buscava, duplicando seus pontos e encerrando o dia.\n");
-            *ptesouro=1;
-            aplicar_pontuação_dupla(ppontuação);
-            testePontuação(ppontuação);
-        } else {
-            etapa_padrão(mapa, petapa);
-        }
+        do {
+            if (etapaAtual == tamanho - 2||etapaAtual == 4) {
+                printf("Pensando em desistir devido aos ferimentos, você, por sorte, encontra um local para se recuperar. Você recupera 30 de vida e sobe mais %d metros.\n", mapa[*petapa]);
+                restaurar_vida(pvida, 30);
+                verificaVidaAtual(pvida);
+                mostrar_etapa(petapa);
+            }  else {
+                etapa_padrão(mapa, petapa);
+                mostrar_etapa(petapa);
+            }
+        } while (etapaAtual <= tamanho - 2);  
+
+        do {
+            if (etapaAtual == tamanho-1||etapaAtual == 5) {
+                printf("Após descansar, você adentra uma caverna no topo da montranha, encontrando o tesouro que tanto buscava, duplicando seus pontos e encerrando o dia.\n");
+                *ptesouro=1;
+                aplicar_pontuação_dupla(ppontuação);
+                testePontuação(ppontuação);
+                mostrar_etapa(petapa);
+            } else {
+                etapa_padrão(mapa, petapa);
+                mostrar_etapa(petapa);
+            }
+        } while (etapaAtual < tamanho-1||etapaAtual < 5);
 
         printf("\nInício do dia\nVIDA: %d\n", vidaInicial);
         if (tesouroInicial==0) {
@@ -123,6 +133,7 @@ int main() {
         verificaVidaAtual(pvida);
         testeTesouro(ptesouro);
         testePontuação(ppontuação);
+        printf("Etapas realizadas: %d",etapaAtual);
 
     return 0;
 }
