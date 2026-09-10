@@ -89,8 +89,8 @@ int main() {
         pontuaçãoAtual = mapa[0];
         testePontuação(ppontuação);
 
-        do {
-            if (etapaAtual == tamanho - 3|| etapaAtual == 2) {
+        while (etapaAtual <= tamanho - 3) {
+            if (etapaAtual == tamanho - 3) {
                 printf("Na metade do caminho, você é emboscado por outros que também buscam o tesouro. Você os derrota, recebendo 20 de dano e 100 pontos, continuando a subir %d metros.\n", mapa[*petapa]);
                 aplicar_dano(pvida, 20);
                 *ppontuação = *ppontuação + 100;
@@ -102,10 +102,10 @@ int main() {
                 cursor(petapa, mapa, pmapa, ppontuação);
                 testePontuação(ppontuação);
             }
-        } while (etapaAtual <= tamanho - 3);
+        }
 
-        do {
-            if (etapaAtual == tamanho - 2||etapaAtual == 4) {
+        while (etapaAtual <= tamanho - 2){
+            if (etapaAtual == tamanho - 2) {
                 printf("Pensando em desistir devido aos ferimentos, você, por sorte, encontra um local para se recuperar. Você recupera 30 de vida e sobe mais %d metros.\n", mapa[*petapa]);
                 restaurar_vida(pvida, 30);
                 verificaVidaAtual(pvida);
@@ -116,10 +116,10 @@ int main() {
                 cursor(petapa, mapa, pmapa, ppontuação);
                 testePontuação(ppontuação);
             }
-        } while (etapaAtual <= tamanho - 2);  
+        }
 
-        do {
-            if (etapaAtual == tamanho-1||etapaAtual == 5) {
+        while (etapaAtual <= tamanho-1){
+            if (etapaAtual == tamanho-1) {
                 printf("Após descansar, você adentra uma caverna no topo da montranha, encontrando o tesouro que tanto buscava, duplicando seus pontos e encerrando o dia.");
                 *ptesouro=1;
                 aplicar_pontuação_dupla(ppontuação);
@@ -131,7 +131,7 @@ int main() {
                 cursor(petapa, mapa, pmapa, ppontuação);
                 testePontuação(ppontuação);
             }
-        } while (etapaAtual < tamanho-1||etapaAtual < 5);
+        }
 
         printf("\nInício do dia\nVIDA: %d\n", vidaInicial);
         if (tesouroInicial==0) {
