@@ -271,18 +271,6 @@ int main() {
                 etapa_padrão(mapa, petapa);
                 cursor(petapa, mapa, pmapa, ppontuação, pitemValor);
                 testePontuação(ppontuação);
-                item = escolherInventario (inventario);
-                if (item != 3) {
-                    usarItem (inventario, item, pitemValor);
-                    switch (item) {
-                        case 0:
-                            *pvida += *pitemValor;
-                            break;
-                        case 1:
-                            *parmadura += *pitemValor;
-                            break;
-                    }
-                }
             }
         }
 
