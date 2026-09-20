@@ -2,14 +2,14 @@
 #include <string.h>
 
 int main () {
-    char nome_jogadores[3][30], senha_jogadores[3][30], apelido_jogadores[3][30], destino_jogadores[3][30];
+    char nome_jogadores[5][30], senha_jogadores[5][30], apelido_jogadores[5][30], destino_jogadores[5][30];
     char nome[30], senha[30], senha_confirmação[30], apelido[30], equipe[200], separador[2] = {':'}, busca[30];
 
     printf("Informe o nome da equipe:\n");
     fgets(equipe, sizeof(equipe), stdin);
     equipe[strcspn(equipe, "\n")] = '\0';
     strcat(equipe, separador);
-    for (int i=0; i<3; i++) {
+    for (int i=0; i<5; i++) {
         printf("Informe o nome do jogador %d: \n", i+1);
         fgets(nome, sizeof(nome), stdin);
         nome[strcspn(nome, "\n")] = '\0';
@@ -49,7 +49,7 @@ int main () {
             strcpy(senha_jogadores[i], senha);
         }
     }
-    for (int i = 0;i < 3; i++) {
+    for (int i = 0;i < 5; i++) {
         strcpy(destino_jogadores[i], equipe);
         strcat(destino_jogadores[i], apelido_jogadores[i]);
         printf("%s\n", destino_jogadores[i]);
@@ -58,7 +58,7 @@ int main () {
     fgets(busca, sizeof(busca), stdin);
     busca[strcspn(busca, "\n")] = '\0';
     int encontrado = 0;
-    for (int i = 0;i < 3; i++) {
+    for (int i = 0;i < 5; i++) {
         if (strcmp (busca, nome_jogadores[i]) == 0) {
             printf("%s\n", destino_jogadores[i]);
             encontrado = 1;

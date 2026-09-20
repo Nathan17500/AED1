@@ -2,7 +2,7 @@
 #include <locale.h>
 
 void etapa_padrão(int *mapa, int *petapa){
-    printf("Você descansa um pouco antes de prosseguir para a próxima etapa. Você sobo %d metros.\n", mapa[*petapa]);
+    printf("Você descansa um pouco antes de prosseguir para a próxima etapa. Você sobe %d metros.\n", mapa[*petapa]);
 }
 
 void cursor(int *petapa, int mapa[], int *pmapa, int *ppontuação, int *pitemValor){
