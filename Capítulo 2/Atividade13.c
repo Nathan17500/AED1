@@ -273,7 +273,7 @@ int main () {
     float media;
 
     printf("Informe o nome da equipe:\n");
-    fgets(equipe, sizeof(equipe), stdin);
+    fgets(equipe, sizeof(equipe), stdin);   
     equipe[strcspn(equipe, "\n")] = '\0';
     strcat(equipe, separador);
 
