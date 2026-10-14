@@ -318,7 +318,7 @@ int main () {
     int opcao;
 
     do {
-        printf("\n1 - Cadastrar partida\n2 - Listar partidas\n3 - Salvar temporada\n4 - Carregar temporada\n0 - Sair\nOpcao: ");
+        printf("\n1 - Cadastrar partida\n2 - Listar partidas\n3 - Salvar temporada\n4 - Carregar temporada\n5 - Salvar partidas em texto\n6 - Processar temporada\n0 - Sair\nOpcao: ");
 
         if (scanf("%d", &opcao) != 1) {
             int c;
@@ -342,6 +342,14 @@ int main () {
                 if (carregarTemporada("temporada.bin", &partidas, &total)) {
                     printf("%d partida(s) carregada(s).\n", total);
                 }
+                break;
+            case 5:
+                if (salvarPartidasTexto("registro.txt", partidas, total)) {
+                    printf("%d partida(s) acrescentada(s) ao registro.txt.\n", total);
+                }
+                break;
+            case 6:
+                processarTemporada("registro.txt", "relatorio.txt");
                 break;
             case 0:
                 printf("Encerrando.\n");
