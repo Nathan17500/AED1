@@ -104,3 +104,40 @@ void liberarAgenda (Agenda *ag) {
 
     free (ag);
 }
+
+static No *buscarNo (const Agenda *ag, int id) {
+    No *p = ag->inicio;
+
+    while (p != NULL && p->dado.id != id) {
+        p = p->proximo;
+    }
+
+    return p;
+}
+
+int missaoExiste (const Agenda *ag, int id) {
+    if (ag == NULL) return;
+    return buscarNo(ag, id) != NULL;
+}
+
+Resultado_Operacao inserirApos (Agenda *ag, int id_referencia, const Missao *m) {
+    if (ag == NULL || m == NULL) {
+        return ARGUMENTO_INVALIDO;
+    }
+
+    No *ref = buscarNo (ag, id_referencia);
+    if (ref == NULL) {
+        return MISSAO_NAO_ENCONTRADA;
+    }
+
+    No *novo = malloc (sizeof(No));
+    if (novo == NULL) {
+        return ERRO_ALOCACAO;
+    } 
+
+    novo->dado = *m;
+    novo->proximo = ref->proximo;
+    ref->proximo = novo;
+
+    return OPERACAO_OK;
+}
