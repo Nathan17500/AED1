@@ -39,6 +39,13 @@ int main () {
     printf("--- Lista inicial ---\n");
     exibirAgenda(ag);
 
+    mostrarResultado(1, 4, inserirApos(ag, 1, &m4));
+    mostrarResultado(3, 5, inserirApos(ag, 3, &m5));
+    mostrarResultado(99, 6, inserirApos(ag, 99, &m6));
+
+    printf("--- Ordem atual ---\n");
+    exibirAgenda(ag);
+
     Agenda *vazia = criarAgenda();
     if (vazia != NULL) {
         printf("Referencia em lista vazia.\n");

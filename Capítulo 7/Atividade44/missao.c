@@ -116,7 +116,7 @@ static No *buscarNo (const Agenda *ag, int id) {
 }
 
 int missaoExiste (const Agenda *ag, int id) {
-    if (ag == NULL) return;
+    if (ag == NULL) return 0;
     return buscarNo(ag, id) != NULL;
 }
 
